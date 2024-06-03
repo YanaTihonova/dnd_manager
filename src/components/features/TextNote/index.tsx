@@ -1,10 +1,8 @@
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { Pencil1Icon, TrashIcon, CheckIcon } from "@radix-ui/react-icons";
 import {
   Card,
   Button,
   Separator,
-  Grid,
-  Box,
   Flex,
   Heading,
   TextArea,
@@ -14,13 +12,20 @@ import {
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { markdown } from "@/components/common/constance";
 import { useState } from "react";
 
-export default function TextNote() {
-  const [editMode, useEditMode] = useState(false);
-  const [title, useTitle] = useState("Simple note");
-  const [text, useText] = useState(markdown);
+type TextNoteProps = {
+  title: string;
+  text: string;
+  additionalBehavior?: () => {};
+  editMode?: boolean;
+};
+
+export default function TextNote(props: TextNoteProps) {
+  const { title: initTitle, text: initText, editMode: initEditMode } = props;
+  const [editMode, useEditMode] = useState(initEditMode || false);
+  const [title, useTitle] = useState(initTitle);
+  const [text, useText] = useState(initText);
 
   return (
     <Card>
@@ -35,7 +40,7 @@ export default function TextNote() {
         )}
         <Flex justify="end" gap="3">
           <Button onClick={() => useEditMode(!editMode)}>
-            <Pencil1Icon />
+            {editMode ? <CheckIcon /> : <Pencil1Icon />}
           </Button>
           <Button color="ruby">
             <TrashIcon />

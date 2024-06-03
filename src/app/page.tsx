@@ -1,13 +1,14 @@
 "use client";
 
-import { Container, Flex, Grid } from "@radix-ui/themes";
+import { Container } from "@radix-ui/themes";
 
 import TextNote from "@/components/features/TextNote";
+import { markdown } from "@/components/common/constance";
 
 export default function Home() {
   return (
     <Container style={{ padding: "15px" }}>
-      <TextNote />
+      <TextNote title="Why not" text={markdown} />
     </Container>
   );
 }
