@@ -1,6 +1,7 @@
 "use client";
 
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Button, Card, Separator } from "@radix-ui/themes";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -23,9 +24,12 @@ A table:
 
 export default function Home() {
   return (
-    <Flex direction="column" gap="2" align="center">
-      <Text>Hello from Radix Themes :)</Text>
+    <Card>
+      <Button>
+        <Pencil1Icon /> Edit
+      </Button>
+      <Separator my="3" size="4" />
       <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
-    </Flex>
+    </Card>
   );
 }
